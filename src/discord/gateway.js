@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.dirname(require.main.filename);
 const auth = require('../auth.js');
-module.exports = function (token, options) {
+function connect(token, options) {
 	if (!token) throw new TypeError('Property TOKEN must be set');
 	auth.set('_token', token);
 	const ws = new WS('wss://gateway.discord.gg/?v=6&encoding=json');
@@ -44,6 +44,9 @@ module.exports = function (token, options) {
 		if (op === 1) {
 			ws.send(JSON.stringify({ op: 1, d: null }));
 		}
+		if (op === 7) {
+			ws.send(JSON.stringify({ op: 6, d: null }));
+		}
 		if (DEBUG) console.log('Message Payload: ', payload);
 		if (!t) return;
 		const funcPath =
@@ -63,7 +66,18 @@ module.exports = function (token, options) {
 		}
 		funcs.forEach((func) => {
 			const ex = require(path.resolve(root + funcPath + func));
-			ex(d);
+			try {
+				ex(d);
+			} catch (e) {
+				console.log('Error: \n', JSON.stringify(e, null, 2));
+			}
 		});
 	});
-};
+	ws.on('close', (data) => {
+		setTimeout(() => {
+			connect(token, options);
+		}, 5000);
+	});
+}
+
+module.exports = connect;

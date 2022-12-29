@@ -496,6 +496,7 @@ await discord.interactions.commands.permissions.update(APP_ID, COMMAND_ID, PERMI
 |  0.1.9  |                                                Added [`discord.invites`](#invites)                                                |
 | 0.10.0  |     Added [`discord.interactions.commands`](#commands) <br> Changed version number to be semantic (from `0.1.9` => `0.10.0`)      |
 | 0.10.1  |                                             Fixed unsupported markdown in `README.md`                                             |
+| 0.10.2  |                     Discord bots now stay online 24/7 - closed websocket connections automatically reconnect                      |
 
 # ✅ ToDo <a id="todo"></a>
 
