@@ -185,5 +185,61 @@ module.exports = {
 				}
 			}
 		}
+	},
+	responses: {
+		create: async function (id, token, response) {
+			try {
+				let res = await axios({
+					method: 'post',
+					url: `https://discord.com/api/v10/interactions/${id}/${token}/callback`,
+					data: response,
+				});
+				return res.data;
+			} catch (e) {
+				if (e?.response?.data)
+					throw new Error(JSON.stringify(e.response.data, null, 2));
+				else throw e;
+			}
+		},
+		get: async function (app_id, token) {
+			try {
+				let res = await axios({
+					method: 'get',
+					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/@original`,
+				});
+				return res.data;
+			} catch (e) {
+				if (e?.response?.data)
+					throw new Error(JSON.stringify(e.response.data, null, 2));
+				else throw e;
+			}
+		},
+		edit: async function (app_id, token, response) {
+			try {
+				let res = await axios({ 
+					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/@original`,
+					method: 'patch',
+					data: response
+				});
+				return res.data;
+			} catch (e) {
+				if (e?.response?.data)
+					throw new Error(JSON.stringify(e.response.data, null, 2));
+				else throw e;
+			}
+		},
+		delete: async function (app_id, token) {
+			try {
+				let res = await axios({ 
+					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/@original`,
+					method: 'delete',
+				});
+				return res.data;
+			} catch (e) {
+				if (e?.response?.data)
+					throw new Error(JSON.stringify(e.response.data, null, 2));
+				else throw e;
+			}
+		},
 	}
 };

@@ -1,8 +1,4 @@
-# 🔗 A module for connecting to apis and gateways such as discord
-
-Latest version: `@0.10.1`
-
--   Fixed unsupported markdown
+## ❓ A server-based library with event listeners and APIs for discord
 
 ## 🔗 Contents
 
@@ -409,6 +405,11 @@ await discord.invites.delete(INVITE_CODE);
 
 ### &emsp;interactions <a id="interactions"></a>
 
+|           API           |
+| :---------------------: |
+|  [commands](#commands)  |
+| [responses](#responses) |
+
 #### &emsp;&emsp; commands <a id="commands"></a>
 
 ##### &emsp;&emsp;&emsp; create
@@ -479,6 +480,48 @@ await discord.interactions.commands.permissions.get(APP_ID, COMMAND_ID, ?GUILD_I
 await discord.interactions.commands.permissions.update(APP_ID, COMMAND_ID, PERMISSIONS, ?GUILD_ID);
 ```
 
+#### &emsp;&emsp; responses <a id="responses"></a>
+
+##### &emsp;&emsp;&emsp; create
+
+&emsp;&emsp;&emsp; Creates a response to an interaction
+
+```js
+await discord.interactions.responses.create(
+	INTERACTION.ID,
+	INTERACTION.TOKEN,
+	MESSAGE_OBJECT
+);
+```
+
+##### &emsp;&emsp;&emsp; get
+
+&emsp;&emsp;&emsp; Get the initial response to an interaction
+
+```js
+await discord.interactions.responses.get(INTERACTION.ID, INTERACTION.TOKEN);
+```
+
+##### &emsp;&emsp;&emsp; edit
+
+&emsp;&emsp;&emsp; Update the initial response to an interaction
+
+```js
+await discord.interactions.responses.edit(
+	INTERACTION.ID,
+	INTERACTION.TOKEN,
+	MESSAGE_OBJECT
+);
+```
+
+##### &emsp;&emsp;&emsp; delete
+
+&emsp;&emsp;&emsp; Delete the initial response to an interaction
+
+```js
+await discord.interactions.responses.delete(INTERACTION.ID, INTERACTION.TOKEN);
+```
+
 # 📜 Changelog <a id="changelog"></a>
 
 | Version |                                                            Description                                                            |
@@ -497,20 +540,21 @@ await discord.interactions.commands.permissions.update(APP_ID, COMMAND_ID, PERMI
 | 0.10.0  |     Added [`discord.interactions.commands`](#commands) <br> Changed version number to be semantic (from `0.1.9` => `0.10.0`)      |
 | 0.10.1  |                                             Fixed unsupported markdown in `README.md`                                             |
 | 0.10.2  |                     Discord bots now stay online 24/7 - closed websocket connections automatically reconnect                      |
+| 0.11.0  |                                       Added [`discord.interactions.responses`](#responses)                                        |
 
 # ✅ ToDo <a id="todo"></a>
 
 All: add jsdoc
 
-|      Main API       |                  Function                  |                                      Documentation                                       |
-| :-----------------: | :----------------------------------------: | :--------------------------------------------------------------------------------------: |
-| [discord](#discord) | `.interactions.`(`responses`, `followups`) | [discord.dev](https://discord.com/developers/docs/interactions/receiving-and-responding) |
-| [discord](#discord) |                 `.guilds`                  |            [discord.dev](https://discord.com/developers/docs/resources/guild)            |
-| [discord](#discord) |                 `.automod`                 |       [discord.dev](https://discord.com/developers/docs/resources/auto-moderation)       |
-| [discord](#discord) |             `.scheduledEvents`             |    [discord.dev](https://discord.com/developers/docs/resources/guild-scheduled-event)    |
-| [discord](#discord) |                `.templates`                |       [discord.dev](https://discord.com/developers/docs/resources/guild-template)        |
-| [discord](#discord) |                 `.stages`                  |       [discord.dev](https://discord.com/developers/docs/resources/stage-instance)        |
-| [discord](#discord) |                `.stickers`                 |           [discord.dev](https://discord.com/developers/docs/resources/sticker)           |
-| [discord](#discord) |                  `.user`                   |            [discord.dev](https://discord.com/developers/docs/resources/user)             |
-| [discord](#discord) |                `.webhooks`                 |           [discord.dev](https://discord.com/developers/docs/resources/webhook)           |
-| [discord](#discord) |             `.listen`/`.login`             |                  Change token property to [identify object](#identify)                   |
+|      Main API       |         Function          |                                      Documentation                                       |
+| :-----------------: | :-----------------------: | :--------------------------------------------------------------------------------------: |
+| [discord](#discord) | `.interactions.followups` | [discord.dev](https://discord.com/developers/docs/interactions/receiving-and-responding) |
+| [discord](#discord) |         `.guilds`         |            [discord.dev](https://discord.com/developers/docs/resources/guild)            |
+| [discord](#discord) |        `.automod`         |       [discord.dev](https://discord.com/developers/docs/resources/auto-moderation)       |
+| [discord](#discord) |    `.scheduledEvents`     |    [discord.dev](https://discord.com/developers/docs/resources/guild-scheduled-event)    |
+| [discord](#discord) |       `.templates`        |       [discord.dev](https://discord.com/developers/docs/resources/guild-template)        |
+| [discord](#discord) |         `.stages`         |       [discord.dev](https://discord.com/developers/docs/resources/stage-instance)        |
+| [discord](#discord) |        `.stickers`        |           [discord.dev](https://discord.com/developers/docs/resources/sticker)           |
+| [discord](#discord) |          `.user`          |            [discord.dev](https://discord.com/developers/docs/resources/user)             |
+| [discord](#discord) |        `.webhooks`        |           [discord.dev](https://discord.com/developers/docs/resources/webhook)           |
+| [discord](#discord) |    `.listen`/`.login`     |                  Change token property to [identify object](#identify)                   |

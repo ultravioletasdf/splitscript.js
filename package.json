@@ -1,15 +1,15 @@
 {
 	"name": "splitscript.js",
-	"version": "0.10.2",
+	"version": "0.11.0",
 	"main": "index.js",
 	"description": "A server-based library with event listeners and APIs for discord",
 	"keywords": [
 		"discord",
 		"gateways",
 		"apis",
-    "websocket",
-    "wrapper",
-    "server"
+		"websocket",
+		"wrapper",
+		"server"
 	],
 	"author": "Infrared Studio",
 	"license": "ISC",
