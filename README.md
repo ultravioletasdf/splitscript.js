@@ -89,16 +89,6 @@ discord.listen(TOKEN, {
 }); // Authenticate APIs + Listen for events
 ```
 
-> <a id="identify"> **⚠ not implemented yet** </a>
-> Identify `object`:
->
-> ```js
-> {
-> 	*token: DISCORD_BOT_TOKEN, // Authenticate APIs + For listening to events
-> 	?APP_ID: STRING // Used for interactions.commands
-> }
-> ```
-
 ### &emsp; messages <a id="messages"></a>
 
 &emsp;&emsp; [messages.reactions](#reactions)
@@ -409,6 +399,7 @@ await discord.invites.delete(INVITE_CODE);
 | :---------------------: |
 |  [commands](#commands)  |
 | [responses](#responses) |
+| [followups](#followups) |
 
 #### &emsp;&emsp; commands <a id="commands"></a>
 
@@ -487,11 +478,10 @@ await discord.interactions.commands.permissions.update(APP_ID, COMMAND_ID, PERMI
 &emsp;&emsp;&emsp; Creates a response to an interaction
 
 ```js
-await discord.interactions.responses.create(
-	INTERACTION.ID,
-	INTERACTION.TOKEN,
-	MESSAGE_OBJECT
-);
+await discord.interactions.responses.create(INTERACTION.ID, INTERACTION.TOKEN, {
+	type: INTERACTION_CALLBACK_TYPE, // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-type
+	data: MESSAGE_OBJECT
+});
 ```
 
 ##### &emsp;&emsp;&emsp; get
@@ -522,6 +512,48 @@ await discord.interactions.responses.edit(
 await discord.interactions.responses.delete(INTERACTION.ID, INTERACTION.TOKEN);
 ```
 
+#### &emsp;&emsp; followups <a id="followups"></a>
+
+##### &emsp;&emsp;&emsp; create
+
+&emsp;&emsp;&emsp; Creates a followup message for interaction
+
+```js
+await discord.interactions.followups.create(
+	APP_ID,
+	INTERACTION.TOKEN,
+	MESSAGE_OBJECT
+);
+```
+
+##### &emsp;&emsp;&emsp; get
+
+&emsp;&emsp;&emsp; Get the followup message for an interaction
+
+```js
+await discord.interactions.followups.get(APP_ID, INTERACTION.TOKEN);
+```
+
+##### &emsp;&emsp;&emsp; edit
+
+&emsp;&emsp;&emsp; Edits a followup message for an Interaction.
+
+```js
+await discord.interactions.followups.edit(
+	APP_ID,
+	INTERACTION.TOKEN,
+	MESSAGE_OBJECT
+);
+```
+
+##### &emsp;&emsp;&emsp; delete
+
+&emsp;&emsp;&emsp; Deletes a followup message for an Interaction
+
+```js
+await discord.interactions.followups.delete(APP_ID, INTERACTION.TOKEN);
+```
+
 # 📜 Changelog <a id="changelog"></a>
 
 | Version |                                                            Description                                                            |
@@ -541,20 +573,17 @@ await discord.interactions.responses.delete(INTERACTION.ID, INTERACTION.TOKEN);
 | 0.10.1  |                                             Fixed unsupported markdown in `README.md`                                             |
 | 0.10.2  |                     Discord bots now stay online 24/7 - closed websocket connections automatically reconnect                      |
 | 0.11.0  |                                       Added [`discord.interactions.responses`](#responses)                                        |
+| 0.12.0  |                                       Added [`discord.interactions.followups`](#followups)                                        |
 
 # ✅ ToDo <a id="todo"></a>
 
-All: add jsdoc
-
-|      Main API       |         Function          |                                      Documentation                                       |
-| :-----------------: | :-----------------------: | :--------------------------------------------------------------------------------------: |
-| [discord](#discord) | `.interactions.followups` | [discord.dev](https://discord.com/developers/docs/interactions/receiving-and-responding) |
-| [discord](#discord) |         `.guilds`         |            [discord.dev](https://discord.com/developers/docs/resources/guild)            |
-| [discord](#discord) |        `.automod`         |       [discord.dev](https://discord.com/developers/docs/resources/auto-moderation)       |
-| [discord](#discord) |    `.scheduledEvents`     |    [discord.dev](https://discord.com/developers/docs/resources/guild-scheduled-event)    |
-| [discord](#discord) |       `.templates`        |       [discord.dev](https://discord.com/developers/docs/resources/guild-template)        |
-| [discord](#discord) |         `.stages`         |       [discord.dev](https://discord.com/developers/docs/resources/stage-instance)        |
-| [discord](#discord) |        `.stickers`        |           [discord.dev](https://discord.com/developers/docs/resources/sticker)           |
-| [discord](#discord) |          `.user`          |            [discord.dev](https://discord.com/developers/docs/resources/user)             |
-| [discord](#discord) |        `.webhooks`        |           [discord.dev](https://discord.com/developers/docs/resources/webhook)           |
-| [discord](#discord) |    `.listen`/`.login`     |                  Change token property to [identify object](#identify)                   |
+|      Main API       |      Function      |                                   Documentation                                    |
+| :-----------------: | :----------------: | :--------------------------------------------------------------------------------: |
+| [discord](#discord) |      `.user`       |         [discord.dev](https://discord.com/developers/docs/resources/user)          |
+| [discord](#discord) |     `.guilds`      |         [discord.dev](https://discord.com/developers/docs/resources/guild)         |
+| [discord](#discord) |     `.automod`     |    [discord.dev](https://discord.com/developers/docs/resources/auto-moderation)    |
+| [discord](#discord) | `.scheduledEvents` | [discord.dev](https://discord.com/developers/docs/resources/guild-scheduled-event) |
+| [discord](#discord) |    `.templates`    |    [discord.dev](https://discord.com/developers/docs/resources/guild-template)     |
+| [discord](#discord) |     `.stages`      |    [discord.dev](https://discord.com/developers/docs/resources/stage-instance)     |
+| [discord](#discord) |    `.stickers`     |        [discord.dev](https://discord.com/developers/docs/resources/sticker)        |
+| [discord](#discord) |    `.webhooks`     |        [discord.dev](https://discord.com/developers/docs/resources/webhook)        |

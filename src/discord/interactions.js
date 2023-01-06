@@ -241,5 +241,61 @@ module.exports = {
 				else throw e;
 			}
 		},
+	},
+	followups: {
+		create: async function (app_id, token, message) {
+			try {
+				let res = await axios({
+					method: 'post',
+					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}`,
+					data: message,
+				});
+				return res.data;
+			} catch (e) {
+				if (e?.response?.data)
+					throw new Error(JSON.stringify(e.response.data, null, 2));
+				else throw e;
+			}
+		},
+		get: async function (app_id, token, message_id) {
+			try {
+				let res = await axios({
+					method: 'get',
+					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/${message_id}`,
+				});
+				return res.data;
+			} catch (e) {
+				if (e?.response?.data)
+					throw new Error(JSON.stringify(e.response.data, null, 2));
+				else throw e;
+			}
+		},
+		edit: async function (app_id, token, message_id, message) {
+			try {
+				let res = await axios({ 
+					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/${message_id}`,
+					method: 'patch',
+					data: message
+				});
+				return res.data;
+			} catch (e) {
+				if (e?.response?.data)
+					throw new Error(JSON.stringify(e.response.data, null, 2));
+				else throw e;
+			}
+		},
+		delete: async function (app_id, token, message_id) {
+			try {
+				let res = await axios({ 
+					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/${message_id}`,
+					method: 'delete',
+				});
+				return res.data;
+			} catch (e) {
+				if (e?.response?.data)
+					throw new Error(JSON.stringify(e.response.data, null, 2));
+				else throw e;
+			}
+		},
 	}
 };
