@@ -1,5 +1,5 @@
 const axios = require('axios');
-const auth = require('splitscript.js/src/auth.js');
+const variable = require('../variable.js');
 module.exports = {
 	list: async function (guild_id) {
 		try {
@@ -7,7 +7,7 @@ module.exports = {
 				method: 'get',
 				url: `https://discord.com/api/v10/guilds/${guild_id}/emojis`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`,
+					Authorization: `Bot ${variable.get('_token')}`,
 					'Content-Type': 'application/json'
 				}
 			});
@@ -24,7 +24,7 @@ module.exports = {
 				method: 'get',
 				url: `https://discord.com/api/v10/guilds/${guild_id}/emojis/${emoji_id}`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`,
+					Authorization: `Bot ${variable.get('_token')}`,
 					'Content-Type': 'application/json'
 				}
 			});
@@ -41,7 +41,7 @@ module.exports = {
 				method: 'post',
 				url: `https://discord.com/api/v10/guilds/${guild_id}/emojis`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`,
+					Authorization: `Bot ${variable.get('_token')}`,
 					'Content-Type': 'application/json'
 				},
 				data: emoji
@@ -59,7 +59,7 @@ module.exports = {
 				method: 'patch',
 				url: `https://discord.com/api/v10/guilds/${guild_id}/emojis/${emoji_id}`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`,
+					Authorization: `Bot ${variable.get('_token')}`,
 					'Content-Type': 'application/json'
 				},
 				data: emoji_object
@@ -77,7 +77,7 @@ module.exports = {
 				method: 'delete',
 				url: `https://discord.com/api/v10/guilds/${guild_id}/emojis/${emoji_id}`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`,
+					Authorization: `Bot ${variable.get('_token')}`,
 					'Content-Type': 'application/json'
 				}
 			});

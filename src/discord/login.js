@@ -1,4 +1,4 @@
-const auth = require('../auth.js');
+const variable = require('../variable.js');
 module.exports = (token) => {
-	auth.set('_token', token);
+	variable.set('_token', token);
 };

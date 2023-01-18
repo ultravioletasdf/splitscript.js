@@ -1,6 +1,6 @@
 {
 	"name": "splitscript.js",
-	"version": "0.12.0",
+	"version": "0.12.1",
 	"main": "index.js",
 	"description": "A server-based library with event listeners and APIs for discord",
 	"keywords": [
@@ -15,7 +15,6 @@
 	"license": "ISC",
 	"dependencies": {
 		"axios": "^1.1.2",
-		"fs": "^0.0.1-security",
 		"path": "^0.12.7",
 		"ws": "^8.9.0"
 	}

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const auth = require('../auth.js');
+const variable = require('../variable.js');
 module.exports = {
 	commands: {
 		create: async function (app_id, command, guild_id) {
@@ -14,7 +14,7 @@ module.exports = {
 					url: URL,
 					data: command,
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`
+						Authorization: `Bot ${variable.get('_token')}`
 					}
 				});
 				return res.data;
@@ -35,7 +35,7 @@ module.exports = {
 					url: URL,
 					method: 'delete',
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`
+						Authorization: `Bot ${variable.get('_token')}`
 					}
 				});
 			} catch (e) {
@@ -56,7 +56,7 @@ module.exports = {
 					method: 'patch',
 					data: command,
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`
+						Authorization: `Bot ${variable.get('_token')}`
 					}
 				});
 			} catch (e) {
@@ -76,7 +76,7 @@ module.exports = {
 					url: URL,
 					method: 'get',
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`
+						Authorization: `Bot ${variable.get('_token')}`
 					},
 					params: {
 						with_localizations: with_localizations
@@ -101,7 +101,7 @@ module.exports = {
 					method: 'put',
 					data: commands,
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`,
+						Authorization: `Bot ${variable.get('_token')}`,
 						'Content-Type': 'application/json'
 					}
 				});
@@ -123,7 +123,7 @@ module.exports = {
 					method: 'get',
 					url: URL,
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`
+						Authorization: `Bot ${variable.get('_token')}`
 					}
 				});
 				return res.data;
@@ -145,7 +145,7 @@ module.exports = {
 						method: 'get',
 						url: URL,
 						headers: {
-							Authorization: `Bot ${auth.get('_token')}`
+							Authorization: `Bot ${variable.get('_token')}`
 						}
 					});
 					return res.data;
@@ -171,7 +171,7 @@ module.exports = {
 							permissions: permissions
 						},
 						headers: {
-							Authorization: `Bearer ${auth.get('_token')}`,
+							Authorization: `Bearer ${variable.get('_token')}`,
 							'Content-Type': 'application/json'
 						}
 					});
@@ -192,7 +192,7 @@ module.exports = {
 				let res = await axios({
 					method: 'post',
 					url: `https://discord.com/api/v10/interactions/${id}/${token}/callback`,
-					data: response,
+					data: response
 				});
 				return res.data;
 			} catch (e) {
@@ -205,7 +205,7 @@ module.exports = {
 			try {
 				let res = await axios({
 					method: 'get',
-					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/@original`,
+					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/@original`
 				});
 				return res.data;
 			} catch (e) {
@@ -216,7 +216,7 @@ module.exports = {
 		},
 		edit: async function (app_id, token, response) {
 			try {
-				let res = await axios({ 
+				let res = await axios({
 					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/@original`,
 					method: 'patch',
 					data: response
@@ -230,9 +230,9 @@ module.exports = {
 		},
 		delete: async function (app_id, token) {
 			try {
-				let res = await axios({ 
+				let res = await axios({
 					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/@original`,
-					method: 'delete',
+					method: 'delete'
 				});
 				return res.data;
 			} catch (e) {
@@ -240,7 +240,7 @@ module.exports = {
 					throw new Error(JSON.stringify(e.response.data, null, 2));
 				else throw e;
 			}
-		},
+		}
 	},
 	followups: {
 		create: async function (app_id, token, message) {
@@ -248,7 +248,7 @@ module.exports = {
 				let res = await axios({
 					method: 'post',
 					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}`,
-					data: message,
+					data: message
 				});
 				return res.data;
 			} catch (e) {
@@ -261,7 +261,7 @@ module.exports = {
 			try {
 				let res = await axios({
 					method: 'get',
-					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/${message_id}`,
+					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/${message_id}`
 				});
 				return res.data;
 			} catch (e) {
@@ -272,7 +272,7 @@ module.exports = {
 		},
 		edit: async function (app_id, token, message_id, message) {
 			try {
-				let res = await axios({ 
+				let res = await axios({
 					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/${message_id}`,
 					method: 'patch',
 					data: message
@@ -286,9 +286,9 @@ module.exports = {
 		},
 		delete: async function (app_id, token, message_id) {
 			try {
-				let res = await axios({ 
+				let res = await axios({
 					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/${message_id}`,
-					method: 'delete',
+					method: 'delete'
 				});
 				return res.data;
 			} catch (e) {
@@ -296,6 +296,6 @@ module.exports = {
 					throw new Error(JSON.stringify(e.response.data, null, 2));
 				else throw e;
 			}
-		},
+		}
 	}
 };

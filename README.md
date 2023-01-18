@@ -4,7 +4,7 @@
 
 1. [🏗 Project Structure](#structure)
 1. [👂 Event listener](#listener)
-1. [👨‍💻 API Reference](#reference)
+1. [👨‍💻 Function Reference](#reference)
 1. [📜 Changelog](#changelog)
 1. [✅ To do](#todo)
 
@@ -58,7 +58,7 @@ There is also an optional `options` parameter, which looks like the following:
 }
 ```
 
-# API Reference <a id="reference"></a>
+# Function Reference <a id="reference"></a>
 
 Respond to events with multiple discord apis
 
@@ -98,10 +98,6 @@ discord.listen(TOKEN, {
 &emsp;&emsp;&emsp;&emsp; _Creates a message in discord_
 
 ```js
-await discord.messages.create({
-	content: MESSAGE_OBJECT,
-	channel_id: CHANNEL_ID
-});
 await discord.messages.create(MESSAGE_OBJECT, CHANNEL_ID);
 ```
 
@@ -110,15 +106,10 @@ await discord.messages.create(MESSAGE_OBJECT, CHANNEL_ID);
 &emsp;&emsp;&emsp;&emsp; _Edits an existing message_
 
 ```js
-await discord.messages.edit({
-	newMessage: DISCORD_MESSAGE_OBJECT,
-	message_id: EXISTING_MESSAGE_ID,
-	channel_id: EXISTING_CHANNEL_ID
-});
 await discord.messages.edit(
 	DISCORD_MESSAGE_OBJECT,
-	EXISTING_MESSAGE_ID,
-	EXISTING_CHANNEL_ID
+	EXISTING_CHANNEL_ID,
+	EXISTING_MESSAGE_ID
 );
 ```
 
@@ -163,15 +154,14 @@ await discord.messages.list(CHANNEL_ID, OPTIONS);
 &emsp;&emsp;&emsp;&emsp;&emsp; _List all reactions for an emoji in a specific channel_
 
 ```js
-await discord.messages.reactions.get.all({
-     message_id: MESSAGE_ID,
-     channel_id: CHANNEL_ID,
-     emoji: EMOJI // (e.g 😀 or name:id),
-     options: {
+await discord.messages.reactions.get.all(
+	MESSAGE_ID,
+	CHANNEL_ID
+	EMOJI, // (e.g 😀 or name:id)
+     ?{
           after: SNOWFLAKE,
           limit: INTEGER
-     } // Optional
-})
+     }
 ```
 
 ##### &emsp;&emsp;&emsp;&emsp;&emsp; create
@@ -179,10 +169,10 @@ await discord.messages.reactions.get.all({
 &emsp;&emsp;&emsp;&emsp;&emsp; _Adds a reaction to a message_
 
 ```js
-await discord.messages.reactions.create({
-	message_id: MESSAGE_ID,
-	channel_id: CHANNEL_ID,
-	emoji: EMOJI // (e.g 😀 or name:id),
+await discord.messages.reactions.create(
+	MESSAGE_ID,
+	CHANNEL_ID,
+	EMOJI // (e.g 😀 or name:id),
 });
 ```
 
@@ -193,11 +183,11 @@ await discord.messages.reactions.create({
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; _Deletes the bots own reaction from a message_
 
 ```js
-await discord.messages.reactions.delete.own({
-	message_id: MESSAGE_ID,
-	channel_id: CHANNEL_ID,
-	emoji: EMOJI // (e.g 😀 or name:id)
-});
+await discord.messages.reactions.delete.own(
+	MESSAGE_ID,
+	CHANNEL_ID,
+	EMOJI // (e.g 😀 or name:id)
+);
 ```
 
 ###### &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; user
@@ -205,12 +195,12 @@ await discord.messages.reactions.delete.own({
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; _Deletes the reaction of a specific user from a message_
 
 ```js
-await discord.messages.reactions.delete.user({
-	message_id: MESSAGE_ID,
-	channel_id: CHANNEL_ID,
-	emoji: EMOJI, // (e.g 😀 or name:id)
-	user_id: USER_ID
-});
+await discord.messages.reactions.delete.user(
+	MESSAGE_ID,
+	CHANNEL_ID,
+	EMOJI, // (e.g 😀 or name:id)
+	USER_ID
+);
 ```
 
 ###### &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; all
@@ -220,11 +210,11 @@ await discord.messages.reactions.delete.user({
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; parameter
 
 ```js
-await discord.messages.reactions.delete.all({
-	message_id: MESSAGE_ID,
-	channel_id: CHANNEL_ID,
-	emoji: EMOJI // (e.g 😀 or name:id) // Optional
-});
+await discord.messages.reactions.delete.all(
+	MESSAGE_ID,
+	CHANNEL_ID,
+	EMOJI // (e.g 😀 or name:id) // Optional
+);
 ```
 
 ### &emsp;channels <a id="channels"></a>
@@ -395,7 +385,7 @@ await discord.invites.delete(INVITE_CODE);
 
 ### &emsp;interactions <a id="interactions"></a>
 
-|           API           |
+|        Function         |
 | :---------------------: |
 |  [commands](#commands)  |
 | [responses](#responses) |
@@ -556,28 +546,29 @@ await discord.interactions.followups.delete(APP_ID, INTERACTION.TOKEN);
 
 # 📜 Changelog <a id="changelog"></a>
 
-| Version |                                                            Description                                                            |
-| :-----: | :-------------------------------------------------------------------------------------------------------------------------------: |
-|  0.0.8  |                                 First stable version. Added [`discord.messages`](#messages) apis                                  |
-|  0.1.0  |                                       Added [`discord.messages.reactions`](#reactions) apis                                       |
-|  0.1.1  |                                                   Added logs for gateway errors                                                   |
-|  0.1.2  |                         Added a debugging mode (`splitscript.debug()`) to find issues and spam your logs                          |
-|  0.1.3  |                                            Changed a debug `error` to a `console.log`                                             |
-|  0.1.4  |                                             Fixed bug with `discord.messages.create`                                              |
-|  0.1.5  |                                     Changed "\" in file paths to "/" to support linux systems                                     |
-|  0.1.6  |                           (hopefully) fixed a bug in the gateway where the connection would not be kept                           |
-|  0.1.7  | Added JSDoc (for VSCode Intellisense) to [`discord.messages`](#messages)<br>Added [`discord.channels`](#channels) apis (no JSDoc) |
-|  0.1.8  |                                                 Added [`discord.emojis`](#emojis)                                                 |
-|  0.1.9  |                                                Added [`discord.invites`](#invites)                                                |
-| 0.10.0  |     Added [`discord.interactions.commands`](#commands) <br> Changed version number to be semantic (from `0.1.9` => `0.10.0`)      |
-| 0.10.1  |                                             Fixed unsupported markdown in `README.md`                                             |
-| 0.10.2  |                     Discord bots now stay online 24/7 - closed websocket connections automatically reconnect                      |
-| 0.11.0  |                                       Added [`discord.interactions.responses`](#responses)                                        |
-| 0.12.0  |                                       Added [`discord.interactions.followups`](#followups)                                        |
+| Version |                                                                                                           Description                                                                                                            |
+| :-----: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  0.0.8  |                                                                              First stable version. Added [`discord.messages`](#messages) functions                                                                               |
+|  0.1.0  |                                                                                    Added [`discord.messages.reactions`](#reactions) functions                                                                                    |
+|  0.1.1  |                                                                                                  Added logs for gateway errors                                                                                                   |
+|  0.1.2  |                                                                         Added a debugging mode (`splitscript.debug()`) to find issues and spam your logs                                                                         |
+|  0.1.3  |                                                                                            Changed a debug `error` to a `console.log`                                                                                            |
+|  0.1.4  |                                                                                             Fixed bug with `discord.messages.create`                                                                                             |
+|  0.1.5  |                                                                                    Changed "\" in file paths to "/" to support linux systems                                                                                     |
+|  0.1.6  |                                                                          (hopefully) fixed a bug in the gateway where the connection would not be kept                                                                           |
+|  0.1.7  |                                              Added JSDoc (for VSCode Intellisense) to [`discord.messages`](#messages)<br>Added [`discord.channels`](#channels) functions (no JSDoc)                                              |
+|  0.1.8  |                                                                                                Added [`discord.emojis`](#emojis)                                                                                                 |
+|  0.1.9  |                                                                                               Added [`discord.invites`](#invites)                                                                                                |
+| 0.10.0  |                                                     Added [`discord.interactions.commands`](#commands) <br> Changed version number to be semantic (from `0.1.9` => `0.10.0`)                                                     |
+| 0.10.1  |                                                                                            Fixed unsupported markdown in `README.md`                                                                                             |
+| 0.10.2  |                                                                     Discord bots now stay online 24/7 - closed websocket connections automatically reconnect                                                                     |
+| 0.11.0  |                                                                                       Added [`discord.interactions.responses`](#responses)                                                                                       |
+| 0.12.0  |                                                                                       Added [`discord.interactions.followups`](#followups)                                                                                       |
+| 0.12.1  | Removed object style parameters for [`discord.messages`](#messages) functions <br> Renamed `auth.js` to `variable.js` to fit what it actually does <br> Fixed bugged error handling in [`discord.messages`](#messages) functions |
 
 # ✅ ToDo <a id="todo"></a>
 
-|      Main API       |      Function      |                                   Documentation                                    |
+|       Module        |      Function      |                                   Documentation                                    |
 | :-----------------: | :----------------: | :--------------------------------------------------------------------------------: |
 | [discord](#discord) |      `.user`       |         [discord.dev](https://discord.com/developers/docs/resources/user)          |
 | [discord](#discord) |     `.guilds`      |         [discord.dev](https://discord.com/developers/docs/resources/guild)         |

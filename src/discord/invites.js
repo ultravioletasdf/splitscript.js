@@ -1,5 +1,5 @@
 const axios = require('axios');
-const auth = require('splitscript.js/src/auth.js');
+const variable = require('../variable.js');
 module.exports = {
 	get: async function (invite_code, params) {
 		try {
@@ -7,7 +7,7 @@ module.exports = {
 				method: 'get',
 				url: `https://discord.com/api/v10/invites/${invite_code}`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`
+					Authorization: `Bot ${variable.get('_token')}`
 				},
 				params: params
 			});
@@ -24,7 +24,7 @@ module.exports = {
 				method: 'delete',
 				url: `https://discord.com/api/v10/invites/${invite_code}`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`
+					Authorization: `Bot ${variable.get('_token')}`
 				}
 			});
 			return res.data;

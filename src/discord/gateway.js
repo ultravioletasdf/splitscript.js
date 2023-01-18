@@ -2,10 +2,10 @@ const WS = require('ws');
 const fs = require('fs');
 const path = require('path');
 const root = path.dirname(require.main.filename);
-const auth = require('../auth.js');
+const variable = require('../variable.js');
 function connect(token, options) {
 	if (!token) throw new TypeError('Property TOKEN must be set');
-	auth.set('_token', token);
+	variable.set('_token', token);
 	const ws = new WS('wss://gateway.discord.gg/?v=6&encoding=json');
 	const heartbeat = (ms) => {
 		return setInterval(() => {
@@ -28,12 +28,12 @@ function connect(token, options) {
 	};
 	ws.on('open', () => {
 		ws.send(JSON.stringify(payload));
-		if (auth.get('debug')) {
+		if (variable.get('debug')) {
 			console.log('Open Payload: ', payload);
 		}
 	});
 	ws.on('message', (data) => {
-		const DEBUG = auth.get('debug');
+		const DEBUG = variable.get('debug');
 		let payload = JSON.parse(data);
 		let { t, event, op, d } = payload;
 		if (op === 10) {

@@ -1,9 +1,9 @@
 module.exports = {
-	auth: {},
+	variable: {},
 	set: function (key, value) {
-		this.auth[key] = value;
+		this.variable[key] = value;
 	},
 	get: function (key) {
-		return this.auth[key];
+		return this.variable[key];
 	}
 };

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const auth = require('../auth.js');
+const variable = require('../variable.js');
 function isString(obj) {
 	return typeof obj === 'string' || obj instanceof String;
 }
@@ -187,36 +187,17 @@ module.exports = {
 	 */
 	create: async function (message, channel_id) {
 		try {
-			if (isString(channel_id)) {
-				const res = await axios.post(
-					`https://discord.com/api/v10/channels/${channel_id}/messages`,
-					message,
-					{
-						headers: {
-							Authorization: `Bot ${auth.get('_token')}`,
-							'Content-Type': 'application/json'
-						}
+			const res = await axios.post(
+				`https://discord.com/api/v10/channels/${channel_id}/messages`,
+				message,
+				{
+					headers: {
+						Authorization: `Bot ${variable.get('_token')}`,
+						'Content-Type': 'application/json'
 					}
-				);
-				return res.data;
-			} else {
-				if (!message?.channel_id && !channel_id) {
-					throw new TypeError('Property channel_id not set');
 				}
-				const res = await axios.post(
-					`https://discord.com/api/v10/channels/${
-						message.channel_id ?? channel_id
-					}/messages`,
-					message.message,
-					{
-						headers: {
-							Authorization: `Bot ${auth.get('_token')}`,
-							'Content-Type': 'application/json'
-						}
-					}
-				);
-				return res.data;
-			}
+			);
+			return res.data;
 		} catch (e) {
 			throw new Error(JSON.stringify(e.response.data, null, 2));
 		}
@@ -230,39 +211,17 @@ module.exports = {
 	 */
 	edit: async function (newMessage, channel_id, message_id) {
 		try {
-			if (isString(newMessage)) {
-				const res = await axios.patch(
-					`https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}`,
-					newMessage,
-					{
-						headers: {
-							Authorization: `Bot ${auth.get('_token')}`,
-							'Content-Type': 'application/json'
-						}
+			const res = await axios.patch(
+				`https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}`,
+				newMessage,
+				{
+					headers: {
+						Authorization: `Bot ${variable.get('_token')}`,
+						'Content-Type': 'application/json'
 					}
-				);
-				return res.data;
-			} else {
-				if (!newMessage?.channel_id && !channel_id) {
-					throw new TypeError('Property channel_id not set');
 				}
-				if (!newMessage?.message_id && !message_id) {
-					throw new TypeError('Property message_id not set');
-				}
-				const res = await axios.patch(
-					`https://discord.com/api/v10/channels/${
-						content?.channel_id ?? channel_id
-					}/messages/${content?.message_id ?? message_id}`,
-					newMessage.newMessage,
-					{
-						headers: {
-							Authorization: `Bot ${auth.get('_token')}`,
-							'Content-Type': 'application/json'
-						}
-					}
-				);
-				return res.data;
-			}
+			);
+			return res.data;
 		} catch (e) {
 			throw new Error(JSON.stringify(e.response.data, null, 2));
 		}
@@ -285,7 +244,7 @@ module.exports = {
 				`https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}`,
 				{
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`,
+						Authorization: `Bot ${variable.get('_token')}`,
 						'Content-Type': 'application/json'
 					}
 				}
@@ -296,7 +255,7 @@ module.exports = {
 		}
 	},
 	/**
-	 *
+	 * Deletes an array of messages
 	 * @param {String} channel_id
 	 * @param {string[]} messages
 	 * @returns {Null} null
@@ -316,7 +275,7 @@ module.exports = {
 				},
 				{
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`,
+						Authorization: `Bot ${variable.get('_token')}`,
 						'Content-Type': 'application/json'
 					}
 				}
@@ -345,7 +304,7 @@ module.exports = {
 				`https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}`,
 				{
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`,
+						Authorization: `Bot ${variable.get('_token')}`,
 						'Content-Type': 'application/json'
 					}
 				}
@@ -375,7 +334,7 @@ module.exports = {
 				{
 					data: new URLSearchParams(options),
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`,
+						Authorization: `Bot ${variable.get('_token')}`,
 						'Content-Type': 'application/json'
 					}
 				}
@@ -388,186 +347,111 @@ module.exports = {
 	reactions: {
 		get: {
 			all: async function (message_id, channel_id, emoji, options) {
-				async function req(channel_id, message_id, emoji, options) {
-					try {
-						let result = await axios.get(
-							`https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}/reactions/${encodeURIComponent(
-								emoji
-							)}` +
-								(options
-									? '?' +
-									  new URLSearchParams(options).toString()
-									: ''),
-							{
-								headers: {
-									Authorization: `Bot ${auth.get('_token')}`,
-									'Content-Type':
-										'application/x-www-form-urlencoded'
-								}
+				try {
+					let result = await axios.get(
+						`https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}/reactions/${encodeURIComponent(
+							emoji
+						)}` +
+							(options
+								? '?' + new URLSearchParams(options).toString()
+								: ''),
+						{
+							headers: {
+								Authorization: `Bot ${variable.get('_token')}`,
+								'Content-Type':
+									'application/x-www-form-urlencoded'
 							}
-						);
-						return result.data;
-					} catch (e) {
+						}
+					);
+					return result.data;
+				} catch (e) {
+					if (e?.response?.data)
 						throw new Error(
 							JSON.stringify(e.response.data, null, 2)
 						);
-					}
-				}
-				if (isString(message_id)) {
-					if (!message_id)
-						throw new ReferenceError('Property message_id not set');
-					if (!channel_id)
-						throw new ReferenceError('Property channel_id not set');
-					if (!emoji)
-						throw new ReferenceError('Property emoji not set');
-					let result = await req(
-						channel_id,
-						message_id,
-						emoji,
-						options
-					);
-					return result;
-				} else {
-					let {
-						message_id: message__id,
-						channel_id,
-						emoji,
-						options
-					} = message_id;
-					let result = await req(
-						channel_id,
-						message__id,
-						emoji,
-						options
-					);
-					return result;
+					else throw e;
 				}
 			}
 		},
 		create: async function (message_id, channel_id, emoji) {
-			async function req(message_id, channel_id, emoji) {
+			try {
+				await axios.put(
+					`https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}/reactions/${encodeURIComponent(
+						emoji
+					)}/@me`,
+					{},
+					{
+						headers: {
+							Authorization: `Bot ${variable.get('_token')}`,
+							Accept: 'application/json'
+						}
+					}
+				);
+			} catch (e) {
+				if (e?.response?.data)
+					throw new Error(JSON.stringify(e.response.data, null, 2));
+				else throw e;
+			}
+		},
+		delete: {
+			own: async function (message_id, channel_id, emoji) {
 				try {
-					await axios.put(
+					await axios.delete(
 						`https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}/reactions/${encodeURIComponent(
 							emoji
 						)}/@me`,
-						{},
 						{
 							headers: {
-								Authorization: `Bot ${auth.get('_token')}`,
+								Authorization: `Bot ${variable.get('_token')}`,
 								Accept: 'application/json'
 							}
 						}
 					);
 				} catch (e) {
-					throw new Error(JSON.stringify(e.response.data, null, 2));
-				}
-			}
-			if (!isString(message_id)) {
-				let { message_id: message__id, channel_id, emoji } = message_id;
-				console.log(message__id);
-				console.log(message_id);
-				req(message__id, channel_id, emoji);
-				return;
-			}
-			req(message_id, channel_id, emoji);
-		},
-		delete: {
-			own: async function (message_id, channel_id, emoji) {
-				async function req(message_id, channel_id, emoji) {
-					const URL = `https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}/reactions/${encodeURIComponent(
-						emoji
-					)}/@me`;
-					try {
-						await axios.delete(URL, {
-							headers: {
-								Authorization: `Bot ${auth.get('_token')}`,
-								Accept: 'application/json'
-							}
-						});
-					} catch (e) {
-						console.log(e);
-						throw e?.response?.data
-							? new Error(
-									JSON.stringify(e.response.data, null, 2)
-							  )
-							: e;
-					}
-				}
-				if (isString(message_id)) {
-					req(message_id, channel_id, emoji);
-				} else {
-					const {
-						message_id: message__id,
-						channel_id,
-						emoji
-					} = message_id;
-					req(message__id, channel_id, emoji);
+					if (e?.response?.data)
+						throw new Error(
+							JSON.stringify(e.response.data, null, 2)
+						);
+					else throw e;
 				}
 			},
 			user: async function (message_id, channel_id, emoji, user_id) {
-				async function req(message_id, channel_id, emoji, user_id) {
-					const URL = `https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}/reactions/${encodeURIComponent(
-						emoji
-					)}/${user_id}`;
-					try {
-						await axios.delete(URL, {
+				try {
+					await axios.delete(
+						`https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}/reactions/${encodeURIComponent(
+							emoji
+						)}/${user_id}`,
+						{
 							headers: {
-								Authorization: `Bot ${auth.get('_token')}`,
+								Authorization: `Bot ${variable.get('_token')}`,
 								Accept: 'application/json'
 							}
-						});
-					} catch (e) {
-						console.log(e);
-						throw e?.response?.data
-							? new Error(
-									JSON.stringify(e.response.data, null, 2)
-							  )
-							: e;
-					}
-				}
-				if (isString(message_id)) {
-					req(message_id, channel_id, emoji, user_id);
-				} else {
-					const {
-						message_id: message__id,
-						channel_id,
-						emoji,
-						user_id
-					} = message_id;
-					req(message__id, channel_id, emoji, user_id);
+						}
+					);
+				} catch (e) {
+					if (e?.response?.data)
+						throw new Error(
+							JSON.stringify(e.response.data, null, 2)
+						);
+					else throw e;
 				}
 			},
 			all: async function (message_id, channel_id, emoji) {
-				async function req(message_id, channel_id, emoji) {
-					let URL = `https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}/reactions`;
-					if (emoji) {
-						URL += `/${encodeURIComponent(emoji)}`;
-					}
-					try {
-						await axios.delete(URL, {
-							headers: {
-								Authorization: `Bot ${auth.get('_token')}`,
-								Accept: 'application/json'
-							}
-						});
-					} catch (e) {
-						throw e?.response?.data
-							? new Error(
-									JSON.stringify(e.response.data, null, 2)
-							  )
-							: e;
-					}
+				let URL = `https://discord.com/api/v10/channels/${channel_id}/messages/${message_id}/reactions`;
+				if (emoji) {
+					URL += `/${encodeURIComponent(emoji)}`;
 				}
-				if (isString(message_id)) {
-					req(message_id, channel_id, emoji);
-				} else {
-					let {
-						message_id: message__id,
-						channel_id,
-						emoji
-					} = message_id;
-					req(message__id, channel_id, emoji);
+				try {
+					await axios.delete(URL, {
+						headers: {
+							Authorization: `Bot ${variable.get('_token')}`,
+							Accept: 'application/json'
+						}
+					});
+				} catch (e) {
+					throw e?.response?.data
+						? new Error(JSON.stringify(e.response.data, null, 2))
+						: e;
 				}
 			}
 		}

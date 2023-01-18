@@ -1,5 +1,5 @@
 const axios = require('axios');
-const auth = require('../auth.js');
+const variable = require('../variable.js');
 function isString(obj) {
 	return typeof obj === 'string' || obj instanceof String;
 }
@@ -9,7 +9,7 @@ async function list(guild_id) {
 			method: 'get',
 			url: `https://discord.com/api/v10/guilds/${guild_id}/channels`,
 			headers: {
-				Authorization: `Bot ${auth.get('_token')}`,
+				Authorization: `Bot ${variable.get('_token')}`,
 				'Content-Type': 'application/json'
 			}
 		});
@@ -27,7 +27,7 @@ module.exports = {
 				method: 'get',
 				url: `https://discord.com/api/v10/channels/${id}`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`,
+					Authorization: `Bot ${variable.get('_token')}`,
 					'Content-Type': 'application/json'
 				}
 			});
@@ -45,7 +45,7 @@ module.exports = {
 				method: 'post',
 				url: `https://discord.com/api/v10/guilds/${guild_id}/channels`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`,
+					Authorization: `Bot ${variable.get('_token')}`,
 					'Content-Type': 'application/json'
 				},
 				data: channel
@@ -63,7 +63,7 @@ module.exports = {
 				method: 'patch',
 				url: `https://discord.com/api/v10/channels/${id}`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`,
+					Authorization: `Bot ${variable.get('_token')}`,
 					'Content-Type': 'application/json'
 				},
 				data: channel
@@ -81,7 +81,7 @@ module.exports = {
 				method: 'delete',
 				url: `https://discord.com/api/v10/channels/${id}`,
 				headers: {
-					Authorization: `Bot ${auth.get('_token')}`,
+					Authorization: `Bot ${variable.get('_token')}`,
 					'Content-Type': 'application/json'
 				}
 			});
@@ -99,7 +99,7 @@ module.exports = {
 					method: 'get',
 					url: `https://discord.com/api/v10/channels/${id}/invites`,
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`,
+						Authorization: `Bot ${variable.get('_token')}`,
 						'Content-Type': 'application/json'
 					}
 				});
@@ -116,7 +116,7 @@ module.exports = {
 					method: 'post',
 					url: `https://discord.com/api/v10/channels/${id}/invites`,
 					headers: {
-						Authorization: `Bot ${auth.get('_token')}`,
+						Authorization: `Bot ${variable.get('_token')}`,
 						'Content-Type': 'application/json'
 					},
 					data: invite ?? {}
@@ -138,7 +138,7 @@ module.exports = {
 						method: 'patch',
 						url: `https://discord.com/api/v10/guilds/${guild_id}/channels`,
 						headers: {
-							Authorization: `Bot ${auth.get('_token')}`,
+							Authorization: `Bot ${variable.get('_token')}`,
 							'Content-Type': 'application/json'
 						},
 						data: channels
