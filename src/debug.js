@@ -1,4 +1,4 @@
-const auth = require('./auth.js');
+const variable = require('./variable.js');
 module.exports = function () {
-	auth.set('debug', true);
+	variable.set('debug', true);
 };

@@ -565,6 +565,7 @@ await discord.interactions.followups.delete(APP_ID, INTERACTION.TOKEN);
 | 0.11.0  |                                                                                       Added [`discord.interactions.responses`](#responses)                                                                                       |
 | 0.12.0  |                                                                                       Added [`discord.interactions.followups`](#followups)                                                                                       |
 | 0.12.1  | Removed object style parameters for [`discord.messages`](#messages) functions <br> Renamed `auth.js` to `variable.js` to fit what it actually does <br> Fixed bugged error handling in [`discord.messages`](#messages) functions |
+| 0.12.2  |                                                                                           Updated imports for variable.js in debug.js                                                                                            |
 
 # ✅ ToDo <a id="todo"></a>
 
