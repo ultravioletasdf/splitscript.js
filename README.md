@@ -398,7 +398,7 @@ await discord.invites.delete(INVITE_CODE);
 &emsp;&emsp;&emsp; Creates a command
 
 ```js
-await discord.interactions.commands.create(APP_ID, COMMAND_OBJECT, ?GUILD_ID);
+await discord.interactions.commands.create(COMMAND_OBJECT, ?GUILD_ID);
 ```
 
 ##### &emsp;&emsp;&emsp; delete
@@ -406,7 +406,7 @@ await discord.interactions.commands.create(APP_ID, COMMAND_OBJECT, ?GUILD_ID);
 &emsp;&emsp;&emsp; Deletes a command
 
 ```js
-await discord.interactions.commands.delete(APP_ID, COMMAND_ID, ?GUILD_ID);
+await discord.interactions.commands.delete(COMMAND_ID, ?GUILD_ID);
 ```
 
 ##### &emsp;&emsp;&emsp; update
@@ -414,7 +414,7 @@ await discord.interactions.commands.delete(APP_ID, COMMAND_ID, ?GUILD_ID);
 &emsp;&emsp;&emsp; Updates a command
 
 ```js
-await discord.interactions.commands.update(APP_ID, COMMAND_ID, NEW_COMMAND_OBJECT, ?GUILD_ID);
+await discord.interactions.commands.update(COMMAND_ID, NEW_COMMAND_OBJECT, ?GUILD_ID);
 ```
 
 ##### &emsp;&emsp;&emsp; list
@@ -422,7 +422,7 @@ await discord.interactions.commands.update(APP_ID, COMMAND_ID, NEW_COMMAND_OBJEC
 &emsp;&emsp;&emsp; Lists a command
 
 ```js
-await discord.interactions.commands.list(APP_ID, ?GUILD_ID, ?WITH_LOCALIZATIONS);
+await discord.interactions.commands.list(?GUILD_ID, ?WITH_LOCALIZATIONS);
 ```
 
 ##### &emsp;&emsp;&emsp; bulkOverwrite
@@ -430,7 +430,7 @@ await discord.interactions.commands.list(APP_ID, ?GUILD_ID, ?WITH_LOCALIZATIONS)
 &emsp;&emsp;&emsp; Update multiple an array of commands
 
 ```js
-await discord.interactions.commands.bulkOverwrite(APP_ID, [COMMAND_OBJECT], ?GUILD_ID);
+await discord.interactions.commands.bulkOverwrite([COMMAND_OBJECT], ?GUILD_ID);
 ```
 
 ##### &emsp;&emsp;&emsp; get
@@ -438,7 +438,7 @@ await discord.interactions.commands.bulkOverwrite(APP_ID, [COMMAND_OBJECT], ?GUI
 &emsp;&emsp;&emsp; Gets a single command
 
 ```js
-await discord.interactions.commands.get(APP_ID, COMMAND_ID, ?GUILD_ID);
+await discord.interactions.commands.get(COMMAND_ID, ?GUILD_ID);
 ```
 
 #### &emsp;&emsp;&emsp; permissions
@@ -448,7 +448,7 @@ await discord.interactions.commands.get(APP_ID, COMMAND_ID, ?GUILD_ID);
 &emsp;&emsp;&emsp;&emsp; Gets permissions from command
 
 ```js
-await discord.interactions.commands.permissions.get(APP_ID, COMMAND_ID, ?GUILD_ID);
+await discord.interactions.commands.permissions.get(COMMAND_ID, ?GUILD_ID);
 ```
 
 ##### &emsp;&emsp;&emsp;&emsp; update
@@ -458,7 +458,7 @@ await discord.interactions.commands.permissions.get(APP_ID, COMMAND_ID, ?GUILD_I
 > ⚠ requires a bearer token with permissions to manage guilds and roles
 
 ```js
-await discord.interactions.commands.permissions.update(APP_ID, COMMAND_ID, PERMISSIONS, ?GUILD_ID);
+await discord.interactions.commands.permissions.update(COMMAND_ID, PERMISSIONS, ?GUILD_ID);
 ```
 
 #### &emsp;&emsp; responses <a id="responses"></a>
@@ -509,11 +509,7 @@ await discord.interactions.responses.delete(INTERACTION.ID, INTERACTION.TOKEN);
 &emsp;&emsp;&emsp; Creates a followup message for interaction
 
 ```js
-await discord.interactions.followups.create(
-	APP_ID,
-	INTERACTION.TOKEN,
-	MESSAGE_OBJECT
-);
+await discord.interactions.followups.create(INTERACTION.TOKEN, MESSAGE_OBJECT);
 ```
 
 ##### &emsp;&emsp;&emsp; get
@@ -521,7 +517,7 @@ await discord.interactions.followups.create(
 &emsp;&emsp;&emsp; Get the followup message for an interaction
 
 ```js
-await discord.interactions.followups.get(APP_ID, INTERACTION.TOKEN);
+await discord.interactions.followups.get(INTERACTION.TOKEN);
 ```
 
 ##### &emsp;&emsp;&emsp; edit
@@ -529,11 +525,7 @@ await discord.interactions.followups.get(APP_ID, INTERACTION.TOKEN);
 &emsp;&emsp;&emsp; Edits a followup message for an Interaction.
 
 ```js
-await discord.interactions.followups.edit(
-	APP_ID,
-	INTERACTION.TOKEN,
-	MESSAGE_OBJECT
-);
+await discord.interactions.followups.edit(INTERACTION.TOKEN, MESSAGE_OBJECT);
 ```
 
 ##### &emsp;&emsp;&emsp; delete
@@ -541,7 +533,7 @@ await discord.interactions.followups.edit(
 &emsp;&emsp;&emsp; Deletes a followup message for an Interaction
 
 ```js
-await discord.interactions.followups.delete(APP_ID, INTERACTION.TOKEN);
+await discord.interactions.followups.delete(INTERACTION.TOKEN);
 ```
 
 # 📜 Changelog <a id="changelog"></a>
@@ -566,6 +558,8 @@ await discord.interactions.followups.delete(APP_ID, INTERACTION.TOKEN);
 | 0.12.0  |                                                                                       Added [`discord.interactions.followups`](#followups)                                                                                       |
 | 0.12.1  | Removed object style parameters for [`discord.messages`](#messages) functions <br> Renamed `auth.js` to `variable.js` to fit what it actually does <br> Fixed bugged error handling in [`discord.messages`](#messages) functions |
 | 0.12.2  |                                                                                           Updated imports for variable.js in debug.js                                                                                            |
+| 0.13.0  |                                                     `application_id` is automatically grabbed from token - interactions functions no longer have `application_id` parameter                                                      |
+| 0.13.1  |                                                                                                       Updated `README.md`                                                                                                        |
 
 # ✅ ToDo <a id="todo"></a>
 

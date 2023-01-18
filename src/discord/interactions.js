@@ -1,14 +1,19 @@
 const axios = require('axios');
 const variable = require('../variable.js');
+let APP_ID;
+variable.emitter.on('set', (key, value) => {
+	if (key === '_application_id') APP_ID = value;
+}); // Set application_id when it is sent by gateway/login
+
 module.exports = {
 	commands: {
-		create: async function (app_id, command, guild_id) {
+		create: async function (command, guild_id) {
 			try {
 				let URL;
 				if (guild_id)
-					URL = `https://discord.com/api/v10/applications/${app_id}/guilds/${guild_id}/commands`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/guilds/${guild_id}/commands`;
 				else
-					URL = `https://discord.com/api/v10/applications/${app_id}/commands`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/commands`;
 				let res = await axios({
 					method: 'post',
 					url: URL,
@@ -24,13 +29,13 @@ module.exports = {
 				else throw e;
 			}
 		},
-		delete: async function (app_id, command_id, guild_id) {
+		delete: async function (command_id, guild_id) {
 			try {
 				let URL;
 				if (guild_id)
-					URL = `https://discord.com/api/v10/applications/${app_id}/guilds/${guild_id}/commands/${command_id}`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/guilds/${guild_id}/commands/${command_id}`;
 				else
-					URL = `https://discord.com/api/v10/applications/${app_id}/commands/${command_id}`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/commands/${command_id}`;
 				await axios({
 					url: URL,
 					method: 'delete',
@@ -44,13 +49,13 @@ module.exports = {
 				else throw e;
 			}
 		},
-		update: async function (app_id, command_id, command, guild_id) {
+		update: async function (command_id, command, guild_id) {
 			try {
 				let URL;
 				if (guild_id)
-					URL = `https://discord.com/api/v10/applications/${app_id}/guilds/${guild_id}/commands/${command_id}`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/guilds/${guild_id}/commands/${command_id}`;
 				else
-					URL = `https://discord.com/api/v10/applications/${app_id}/commands/${command_id}`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/commands/${command_id}`;
 				await axios({
 					url: URL,
 					method: 'patch',
@@ -65,13 +70,13 @@ module.exports = {
 				else throw e;
 			}
 		},
-		list: async function (app_id, guild_id, with_localizations) {
+		list: async function (guild_id, with_localizations) {
 			try {
 				let URL;
 				if (guild_id)
-					URL = `https://discord.com/api/v10/applications/${app_id}/guilds/${guild_id}/commands`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/guilds/${guild_id}/commands`;
 				else
-					URL = `https://discord.com/api/v10/applications/${app_id}/commands`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/commands`;
 				let res = await axios({
 					url: URL,
 					method: 'get',
@@ -89,13 +94,13 @@ module.exports = {
 				else throw e;
 			}
 		},
-		bulkOverwrite: async function (app_id, commands, guild_id) {
+		bulkOverwrite: async function (commands, guild_id) {
 			try {
 				let URL;
 				if (guild_id)
-					URL = `https://discord.com/api/v10/applications/${app_id}/guilds/${guild_id}/commands`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/guilds/${guild_id}/commands`;
 				else
-					URL = `https://discord.com/api/v10/applications/${app_id}/commands`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/commands`;
 				let res = await axios({
 					url: URL,
 					method: 'put',
@@ -112,13 +117,13 @@ module.exports = {
 				else throw e;
 			}
 		},
-		get: async function (app_id, command_id, guild_id) {
+		get: async function (command_id, guild_id) {
 			try {
 				let URL;
 				if (guild_id)
-					URL = `https://discord.com/api/v10/applications/${app_id}/guilds/${guild_id}/commands/${command_id}`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/guilds/${guild_id}/commands/${command_id}`;
 				else
-					URL = `https://discord.com/api/v10/applications/${app_id}/commands/${command_id}`;
+					URL = `https://discord.com/api/v10/applications/${APP_ID}/commands/${command_id}`;
 				let res = await axios({
 					method: 'get',
 					url: URL,
@@ -134,13 +139,13 @@ module.exports = {
 			}
 		},
 		permissons: {
-			get: async function (app_id, command_id, guild_id) {
+			get: async function (command_id, guild_id) {
 				try {
 					let URL;
 					if (guild_id)
-						URL = `https://discord.com/api/v10/applications/${app_id}/guilds/${guild_id}/commands/${command_id}/permissions`;
+						URL = `https://discord.com/api/v10/applications/${APP_ID}/guilds/${guild_id}/commands/${command_id}/permissions`;
 					else
-						URL = `https://discord.com/api/v10/applications/${app_id}/commands/${command_id}/permissions`;
+						URL = `https://discord.com/api/v10/applications/${APP_ID}/commands/${command_id}/permissions`;
 					let res = await axios({
 						method: 'get',
 						url: URL,
@@ -157,13 +162,13 @@ module.exports = {
 					else throw e;
 				}
 			},
-			update: async function (app_id, command_id, permissions, guild_id) {
+			update: async function (command_id, permissions, guild_id) {
 				try {
 					let URL;
 					if (guild_id)
-						URL = `https://discord.com/api/v10/applications/${app_id}/guilds/${guild_id}/commands/${command_id}/permissions`;
+						URL = `https://discord.com/api/v10/applications/${APP_ID}/guilds/${guild_id}/commands/${command_id}/permissions`;
 					else
-						URL = `https://discord.com/api/v10/applications/${app_id}/commands/${command_id}/permissions`;
+						URL = `https://discord.com/api/v10/applications/${APP_ID}/commands/${command_id}/permissions`;
 					let res = await axios({
 						method: 'put',
 						url: URL,
@@ -201,11 +206,11 @@ module.exports = {
 				else throw e;
 			}
 		},
-		get: async function (app_id, token) {
+		get: async function (token) {
 			try {
 				let res = await axios({
 					method: 'get',
-					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/@original`
+					url: `https://discord.com/api/v10/webhooks/${APP_ID}/${token}/messages/@original`
 				});
 				return res.data;
 			} catch (e) {
@@ -214,10 +219,10 @@ module.exports = {
 				else throw e;
 			}
 		},
-		edit: async function (app_id, token, response) {
+		edit: async function (token, response) {
 			try {
 				let res = await axios({
-					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/@original`,
+					url: `https://discord.com/api/v10/webhooks/${APP_ID}/${token}/messages/@original`,
 					method: 'patch',
 					data: response
 				});
@@ -228,10 +233,10 @@ module.exports = {
 				else throw e;
 			}
 		},
-		delete: async function (app_id, token) {
+		delete: async function (token) {
 			try {
 				let res = await axios({
-					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/@original`,
+					url: `https://discord.com/api/v10/webhooks/${APP_ID}/${token}/messages/@original`,
 					method: 'delete'
 				});
 				return res.data;
@@ -243,11 +248,11 @@ module.exports = {
 		}
 	},
 	followups: {
-		create: async function (app_id, token, message) {
+		create: async function (token, message) {
 			try {
 				let res = await axios({
 					method: 'post',
-					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}`,
+					url: `https://discord.com/api/v10/webhooks/${APP_ID}/${token}`,
 					data: message
 				});
 				return res.data;
@@ -257,11 +262,11 @@ module.exports = {
 				else throw e;
 			}
 		},
-		get: async function (app_id, token, message_id) {
+		get: async function (token, message_id) {
 			try {
 				let res = await axios({
 					method: 'get',
-					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/${message_id}`
+					url: `https://discord.com/api/v10/webhooks/${APP_ID}/${token}/messages/${message_id}`
 				});
 				return res.data;
 			} catch (e) {
@@ -270,10 +275,10 @@ module.exports = {
 				else throw e;
 			}
 		},
-		edit: async function (app_id, token, message_id, message) {
+		edit: async function (token, message_id, message) {
 			try {
 				let res = await axios({
-					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/${message_id}`,
+					url: `https://discord.com/api/v10/webhooks/${APP_ID}/${token}/messages/${message_id}`,
 					method: 'patch',
 					data: message
 				});
@@ -284,10 +289,10 @@ module.exports = {
 				else throw e;
 			}
 		},
-		delete: async function (app_id, token, message_id) {
+		delete: async function (token, message_id) {
 			try {
 				let res = await axios({
-					url: `https://discord.com/api/v10/webhooks/${app_id}/${token}/messages/${message_id}`,
+					url: `https://discord.com/api/v10/webhooks/${APP_ID}/${token}/messages/${message_id}`,
 					method: 'delete'
 				});
 				return res.data;
