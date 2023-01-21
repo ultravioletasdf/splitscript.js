@@ -1,3 +1,17 @@
+<div align="center">
+	<a href="https://www.npmjs.com/package/splitscript.js">
+	<img src="https://i.imgur.com/reht9nR.png;" style="padding-bottom:10px;" height="150">
+	</a>
+	<br>
+	<a href="https://discord.gg/WJySJ7HdrZ"><img src="https://img.shields.io/discord/1033343718494847007?color=5865F2&logo=discord&logoColor=white"></a>
+	<img src="https://img.shields.io/npm/v/splitscript.js?color=9477CB&label=version">
+	<img src="https://img.shields.io/npm/dt/splitscript.js.svg?color=FF6666">
+	<br>
+	<a href="https://splitscript.js.org" >
+	<img src="https://i.imgur.com/xUQ8o9P.png" height="75px" style="margin-top:15px;">
+	</a>
+</div>
+
 ## ❓ A server-based library with event listeners and APIs for discord
 
 ## 🔗 Contents
@@ -560,6 +574,8 @@ await discord.interactions.followups.delete(INTERACTION.TOKEN);
 | 0.12.2  |                                                                                           Updated imports for variable.js in debug.js                                                                                            |
 | 0.13.0  |                                                     `application_id` is automatically grabbed from token - interactions functions no longer have `application_id` parameter                                                      |
 | 0.13.1  |                                                                                                       Updated `README.md`                                                                                                        |
+| 0.13.2  |                                                                                                       Updated `README.md`                                                                                                        |
+| 0.13.2  |                                                                                         Updated `README.md` (Fixed issue with centering)                                                                                         |
 
 # ✅ ToDo <a id="todo"></a>
 
