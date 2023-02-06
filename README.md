@@ -1,18 +1,19 @@
 <div align="center">
-	<a href="https://www.npmjs.com/package/splitscript.js">
-	<img src="https://i.imgur.com/reht9nR.png;" style="padding-bottom:10px;" height="150">
-	</a>
-	<br>
-	<a href="https://discord.gg/WJySJ7HdrZ"><img src="https://img.shields.io/discord/1033343718494847007?color=5865F2&logo=discord&logoColor=white"></a>
-	<img src="https://img.shields.io/npm/v/splitscript.js?color=9477CB&label=version">
-	<img src="https://img.shields.io/npm/dt/splitscript.js.svg?color=FF6666">
-	<br>
-	<a href="https://splitscript.js.org" >
-	<img src="https://i.imgur.com/xUQ8o9P.png" height="75px" style="margin-top:15px;">
-	</a>
+<a href="https://www.npmjs.com/package/splitscript.js">
+<img src="https://i.imgur.com/reht9nR.png;" style="padding-bottom:10px;" height="150">
+</a>
+
+<a href="https://discord.gg/WJySJ7HdrZ"><img src="https://img.shields.io/discord/1033343718494847007?color=5865F2&logo=discord&logoColor=white"></a>
+<img src="https://img.shields.io/npm/v/splitscript.js?color=9477CB&label=version">
+<img src="https://img.shields.io/npm/dt/splitscript.js.svg?color=FF6666">
+<br>
+<a href="https://splitscript.js.org" >
+<img src="https://i.imgur.com/xUQ8o9P.png" height="75px" style="margin-top:0px;">
+</a>
+
 </div>
 
-## ❓ A server-based library with event listeners and APIs for discord
+## A tiny discord bot framework
 
 ## 🔗 Contents
 
@@ -24,7 +25,13 @@
 
 # 🏗 Project structure <a id="structure"></a>
 
-A splitscript project would look like this:
+A SplitScript.js project has:
+
+-   a `functions/` folder for listening to events
+-   a `files/` folder for managing files with [SplitScript.fs](https://www.npmjs.com/package/splitscript.fs)
+-   a main file (e.g: main.js, index.js) for setting up the listener
+
+E.g:
 
 ```
 functions/
@@ -33,44 +40,43 @@ functions/
                start.js
           message/
                create/
-                    all.js
-main.js
+                    1.js
+		interaction/
+			create/
+				command.js
+index.js
 package.json
 package-lock.json
 ```
 
-Example event file
+# 👂 Listening to events <a id="listener"></a>
+
+To listen to events on discord, use the `discord.listen` function in your main file:
 
 ```js
 const { discord } = require('splitscript.js');
+discord.listen('TOKEN', {
+	intents: INTEGER
+});
+```
+
+`intents` must be a valid [discord intent](https://discord.com/developers/docs/topics/gateway#gateway-intents) or the connection will close
+
+## Create event listener
+
+See [the docs](https://splitscript.js.org/docs/discord/events) for a list of event paths
+Create a `.js` file with any name in the event path listed above.
+In that, put the code:
+
+```js
+// functions/discord/path
+const { discord } = require('splitscript.js');
 module.exports = async function (event) {
-	console.log(event); // Event data
-	await discord.channels.create(
-		'969899407229194250', // Guild Id
-		{ name: 'test-123' } // Channel Object
-	);
+	// Run some code
 };
 ```
 
-# 👂 Listening to events <a id="listener"></a>
-
--   _As of beta 0.0.8, discord is the only gateway supported_
-
-To listen to events on discord, use the `discord.listen` function _(in your main file)_:
-
-```js
-const { discord } = require('splitscript.js');
-discord.listen('TOKEN');
-```
-
-There is also an optional `options` parameter, which looks like the following:
-
-```js
-{
-     presence: {status: "online"}, // Discord presence object
-     intents: 513, // Defaults to every intent
-}
-```
+You can write the code that you want to run in the function.
 
 # Function Reference <a id="reference"></a>
 
@@ -575,7 +581,9 @@ await discord.interactions.followups.delete(INTERACTION.TOKEN);
 | 0.13.0  |                                                     `application_id` is automatically grabbed from token - interactions functions no longer have `application_id` parameter                                                      |
 | 0.13.1  |                                                                                                       Updated `README.md`                                                                                                        |
 | 0.13.2  |                                                                                                       Updated `README.md`                                                                                                        |
-| 0.13.2  |                                                                                         Updated `README.md` (Fixed issue with centering)                                                                                         |
+| 0.13.3  |                                                                                        Updated `README.md` (fixed issue with centering )                                                                                         |
+| 0.14.0  |                                         Swapped from `axios` to a much smaller [`splitscript.https`](https://www.npmjs.com/package/splitscript.https) <br> added some `guilds` functions                                         |
+| 0.15.0  |                                                                    [splitscript.https](https://www.npmjs.com/package/splitscript.https) exported in index.js                                                                     |
 
 # ✅ ToDo <a id="todo"></a>
 

@@ -4,7 +4,7 @@ const path = require('path');
 
 const root = path.dirname(require.main.filename);
 
-const variable = require('../variable.js');
+const variable = require('splitscript.js/src/variable.js');
 const tokenToId = require('./tokenToId.js');
 
 function connect(token, options) {

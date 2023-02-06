@@ -1,4 +1,4 @@
-const variable = require('../variable.js');
+const variable = require('splitscript.js/src/variable.js');
 const tokenToId = require('./tokenToId.js');
 module.exports = (token) => {
 	variable.set('_token', token);
