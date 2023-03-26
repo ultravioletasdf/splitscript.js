@@ -1,6 +1,6 @@
 {
 	"name": "splitscript.js",
-	"version": "0.15.3",
+	"version": "0.15.4",
 	"main": "index.js",
 	"description": "Simple library with event listeners and APIs for discord",
 	"keywords": [

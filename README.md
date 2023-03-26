@@ -107,6 +107,7 @@ You can write the code that you want to run in the function.
 | 0.15.1  |                                                                                                    Added ts declaration files                                                                                                    |
 | 0.15.2  |                                                                                              Updated `readme.md` and `package.json`                                                                                              |
 | 0.15.3  |                                                                                                       updated `readme.md`                                                                                                        |
+| 0.15.4  |                                                                                                  Removed jsdoc for messages.js                                                                                                   |
 
 # ✅ ToDo <a id="todo"></a>
 
