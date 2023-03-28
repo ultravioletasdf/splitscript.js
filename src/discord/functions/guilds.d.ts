@@ -1,4 +1,4 @@
-import { Guild, GuildPreview } from '../types';
+import { Guild, GuildPreview, Role } from '../types';
 /** Create new guild */
 export function create(guild: Partial<Guild>): Promise<Guild>;
 /** Returns guild object for given id */
@@ -8,5 +8,5 @@ export function preview(id: string): Promise<GuildPreview>;
 /** Modify guild's settings */
 export function modify(id: string, guild: Partial<Guild>): Promise<Guild>;
 /** Delete guild */
-function deleteGuild(id: string);
+declare function deleteGuild(id: string): Promise<null>;
 export { deleteGuild as delete };

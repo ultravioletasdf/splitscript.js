@@ -108,13 +108,13 @@ You can write the code that you want to run in the function.
 | 0.15.2  |                                                                                              Updated `readme.md` and `package.json`                                                                                              |
 | 0.15.3  |                                                                                                       updated `readme.md`                                                                                                        |
 | 0.15.4  |                                                                                                  Removed jsdoc for messages.js                                                                                                   |
+| 0.16.0  |                                                                                           Added rest of functions for `discord.guilds`                                                                                           |
 
 # ✅ ToDo <a id="todo"></a>
 
 |       Module        |      Function      |                                   Documentation                                    |
 | :-----------------: | :----------------: | :--------------------------------------------------------------------------------: |
 | [discord](#discord) |      `.user`       |         [discord.dev](https://discord.com/developers/docs/resources/user)          |
-| [discord](#discord) |     `.guilds`      |         [discord.dev](https://discord.com/developers/docs/resources/guild)         |
 | [discord](#discord) |     `.automod`     |    [discord.dev](https://discord.com/developers/docs/resources/auto-moderation)    |
 | [discord](#discord) | `.scheduledEvents` | [discord.dev](https://discord.com/developers/docs/resources/guild-scheduled-event) |
 | [discord](#discord) |    `.templates`    |    [discord.dev](https://discord.com/developers/docs/resources/guild-template)     |

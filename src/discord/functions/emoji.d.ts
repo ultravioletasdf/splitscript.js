@@ -21,7 +21,7 @@ type ModifyEmojiParams = {
 	/** name of emoji */
 	name: string;
 	/** roles allowed to use emoji */
-	roles: ?string[];
+	roles: (string | null)[];
 };
 /** Modify given emoji */
 export function modify(

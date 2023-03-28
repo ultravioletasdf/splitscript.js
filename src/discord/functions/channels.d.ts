@@ -31,12 +31,9 @@ type CreateInviteBody = {
 	/** the id of the embedded application to open for this invite, required if `target_type` is 2, the application must have the `EMBEDDED` flag	 */
 	target_application_id: string;
 };
-interface invites {
+export interface invites {
 	/** List invites in a channel */
 	list: (id: string) => Promise<Invite[]>;
 	/** Create invite in a channel */
 	create: (id: string, invite: Partial<CreateInviteBody>) => Promise<Invite>;
 }
-export const invites: invites;
-import * as invites from './channels.invites';
-export { invites };

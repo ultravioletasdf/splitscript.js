@@ -6,5 +6,5 @@ declare type Options = {
 	intents?: number;
 };
 /** Listen to discord events */
-function connect(token: string, options?: Options): void;
+declare function connect(token: string, options?: Options): void;
 export = connect;

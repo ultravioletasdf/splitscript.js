@@ -3,7 +3,7 @@ import {
 	CommandPermission,
 	GuildCommandPermission,
 	InteractionCallbackData,
-	Message,
+	Message
 } from '../types';
 
 interface permissions {
@@ -79,7 +79,7 @@ interface responses {
 		id: string,
 		token: string,
 		response: InteractionResponse
-	) => Promise<*>;
+	) => Promise<null>;
 	/** Returns the initial Interaction response. */
 	get: (token: string) => Promise<Message>;
 	/** Edits the initial Interaction response.  */
@@ -88,12 +88,12 @@ interface responses {
 		response: InteractionCallbackData
 	) => Promise<Message>;
 	/** Deletes the initial Interaction response. */
-	delete: (token: string) => Promise<*>;
+	delete: (token: string) => Promise<null>;
 }
 export const responses: responses;
 interface followups {
 	/** Creates a followup message for interaction */
-	create: (token: string, message: Partial<Message>) => Promise<*>;
+	create: (token: string, message: Partial<Message>) => Promise<null>;
 	/** Get the followup message for an interaction */
 	get: (token: string, message_id: string) => Promise<Message>;
 	/** Edits a followup message for an interaction. */

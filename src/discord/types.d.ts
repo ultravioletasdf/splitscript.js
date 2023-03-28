@@ -1015,7 +1015,7 @@ export type Activity = {
 	/** User's current party status */
 	state?: string | null;
 	/** Emoji used for a custom status */
-	emoji?: ?ActivityEmoji;
+	emoji?: ActivityEmoji | null;
 	/** Information for the current party of the player */
 	party?: ActivityParty;
 	/** Images for the presence and their hover texts */
