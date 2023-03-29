@@ -1,4 +1,5 @@
 const { get, post, patch, put, delete: deleteReq } = require('../request');
+const users = require('./users');
 module.exports = {
 	/** Create a new guild.  */
 	create: async (guild) => post(`https://discord.com/api/v10/guilds`, guild),
@@ -7,8 +8,11 @@ module.exports = {
 		get(`https://discord.com/api/v10/guilds/${id}`, {
 			with_counts: with_counts
 		}),
+	list: users.me.guilds.list,
+	getAuditLog: async (id, options) =>
+		get(`https://discord.com/api/v10/guilds/${id}/audit-logs`, options),
 	/** Returns the guild preview object for the given id. If the user is not in the guild, then the guild must be lurkable. */
-	preview: async (id) =>
+	getPreview: async (id) =>
 		get(`https://discord.com/api/v10/guilds/${id}/preview`),
 	/** Modify a guild's settings */
 	modify: async (id, guild) =>
@@ -47,6 +51,16 @@ module.exports = {
 		}
 	},
 	members: {
+		me: {
+			/** Returns a guild member object for the current user. */
+			get: users.me.guilds.getMember,
+			/** Modifies the current member in a guild.  */
+			modify: async (id, options) =>
+				patch(
+					`https://discord.com/api/v10/guilds/${id}/members/@me`,
+					options
+				)
+		},
 		/** Returns a guild member object for the specified user. */
 		get: async (id, user_id) =>
 			get(`https://discord.com/api/v10/guilds/${id}/members/${user_id}`),
@@ -60,7 +74,7 @@ module.exports = {
 				options
 			),
 		/** Adds a user to the guild, provided you have a valid oauth2 access token for the user with the guilds.join scope. */
-		add: async (guild_id, user_id, options) =>
+		add: async (id, user_id, options) =>
 			put(
 				`https://discord.com/api/v10/guilds/${id}/members/${user_id}`,
 				options
@@ -75,12 +89,6 @@ module.exports = {
 			patch(
 				`https://discord.com/api/v10/guilds/${id}/members/${user_id}`,
 				member
-			),
-		/** Modifies the current member in a guild.  */
-		modifyMe: async (id, options) =>
-			patch(
-				`https://discord.com/api/v10/guilds/${id}/members/@me`,
-				options
 			),
 		voice: {
 			/** Updates another user's voice state.  */
@@ -153,7 +161,7 @@ module.exports = {
 			get(`https://discord.com/api/v10/guilds/${id}/widget.png`, options)
 	},
 	/** Returns a partial invite object for guilds with that feature enabled.  */
-	vanity: async (id) =>
+	getVanity: async (id) =>
 		get(`https://discord.com/api/v10/guilds/${id}/vanity-url`),
 	welcomeScreen: {
 		/** Returns the Welcome Screen object for the guild.  */
@@ -165,5 +173,6 @@ module.exports = {
 				`https://discord.com/api/v10/guilds/${id}/welcome-screen`,
 				options
 			)
-	}
+	},
+	leave: users.me.guilds.leave
 };
