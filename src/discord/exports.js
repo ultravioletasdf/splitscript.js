@@ -11,5 +11,6 @@ module.exports = {
 	invites: require('./functions/invites.js'),
 	messages: require('./functions/messages.js'),
 	users: require('./functions/users.js'),
-	automod: require('./functions/automod.js')
+	automod: require('./functions/automod.js'),
+	stageInstaces: require('./functions/stageInstances.js')
 };
