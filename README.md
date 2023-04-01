@@ -113,12 +113,12 @@ You can write the code that you want to run in the function.
 | 0.17.1  | Added `discord.guilds.getAuditLog`, `discord.guilds.members.(modifyMe/me)` now `discord.guilds.members.me.(modify/get)`, `discord.guilds.vanity` now `discord.guilds.getVanity`, `discord.guilds.preview` now `discord.guilds.getPreview` |
 | 0.18.0  | Added `discord.automod`                                                                                                                                                                                                                   |
 | 0.19.0  | Added `discord.stageInstances`                                                                                                                                                                                                            |
+| 0.20.0  | Added `discord.scheduledEvents`                                                                                                                                                                                                           |
 
 # ✅ ToDo <a id="todo"></a>
 
-|       Module        |      Function      |                                   Documentation                                    |
-| :-----------------: | :----------------: | :--------------------------------------------------------------------------------: |
-| [discord](#discord) | `.scheduledEvents` | [discord.dev](https://discord.com/developers/docs/resources/guild-scheduled-event) |
-| [discord](#discord) |    `.templates`    |    [discord.dev](https://discord.com/developers/docs/resources/guild-template)     |
-| [discord](#discord) |    `.stickers`     |        [discord.dev](https://discord.com/developers/docs/resources/sticker)        |
-| [discord](#discord) |    `.webhooks`     |        [discord.dev](https://discord.com/developers/docs/resources/webhook)        |
+|       Module        |   Function   |                                Documentation                                |
+| :-----------------: | :----------: | :-------------------------------------------------------------------------: |
+| [discord](#discord) | `.templates` | [discord.dev](https://discord.com/developers/docs/resources/guild-template) |
+| [discord](#discord) | `.stickers`  |    [discord.dev](https://discord.com/developers/docs/resources/sticker)     |
+| [discord](#discord) | `.webhooks`  |    [discord.dev](https://discord.com/developers/docs/resources/webhook)     |
