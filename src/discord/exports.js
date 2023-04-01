@@ -10,5 +10,6 @@ module.exports = {
 	interactions: require('./functions/interactions.js'),
 	invites: require('./functions/invites.js'),
 	messages: require('./functions/messages.js'),
-	users: require('./functions/users.js')
+	users: require('./functions/users.js'),
+	automod: require('./functions/automod.js')
 };
