@@ -114,11 +114,11 @@ You can write the code that you want to run in the function.
 | 0.18.0  | Added `discord.automod`                                                                                                                                                                                                                   |
 | 0.19.0  | Added `discord.stageInstances`                                                                                                                                                                                                            |
 | 0.20.0  | Added `discord.scheduledEvents`                                                                                                                                                                                                           |
+| 0.21.0  | Added `discord.templates`                                                                                                                                                                                                                 |
 
 # ✅ ToDo <a id="todo"></a>
 
-|       Module        |   Function   |                                Documentation                                |
-| :-----------------: | :----------: | :-------------------------------------------------------------------------: |
-| [discord](#discord) | `.templates` | [discord.dev](https://discord.com/developers/docs/resources/guild-template) |
-| [discord](#discord) | `.stickers`  |    [discord.dev](https://discord.com/developers/docs/resources/sticker)     |
-| [discord](#discord) | `.webhooks`  |    [discord.dev](https://discord.com/developers/docs/resources/webhook)     |
+|       Module        |  Function   |                            Documentation                             |
+| :-----------------: | :---------: | :------------------------------------------------------------------: |
+| [discord](#discord) | `.stickers` | [discord.dev](https://discord.com/developers/docs/resources/sticker) |
+| [discord](#discord) | `.webhooks` | [discord.dev](https://discord.com/developers/docs/resources/webhook) |

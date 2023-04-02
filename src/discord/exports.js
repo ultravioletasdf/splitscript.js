@@ -13,5 +13,6 @@ module.exports = {
 	users: require('./functions/users.js'),
 	automod: require('./functions/automod.js'),
 	stageInstaces: require('./functions/stageInstances.js'),
-	scheduledEvents: require('./functions/scheduledEvents.js')
+	scheduledEvents: require('./functions/scheduledEvents.js'),
+	templates: require('./functions/templates.js')
 };
