@@ -115,6 +115,7 @@ You can write the code that you want to run in the function.
 | 0.19.0  | Added `discord.stageInstances`                                                                                                                                                                                                            |
 | 0.20.0  | Added `discord.scheduledEvents`                                                                                                                                                                                                           |
 | 0.21.0  | Added `discord.templates`                                                                                                                                                                                                                 |
+| 0.21.1  | Removed `discord.guilds.members.roles` (Fix `cannot read properties of undefined error` )                                                                                                                                                 |
 
 # ✅ ToDo <a id="todo"></a>
 

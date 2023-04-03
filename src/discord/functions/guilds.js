@@ -103,8 +103,7 @@ module.exports = {
 					`https://discord.com/api/v10/guilds/${id}/voice-states/@me`,
 					options
 				)
-		},
-		roles: this.roles.members
+		}
 	},
 	bans: {
 		/** Returns a list of ban objects for the users banned from this guild. */
