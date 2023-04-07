@@ -1,4 +1,10 @@
-const { get, post, patch, put, delete: deleteReq } = require('../request');
+const {
+	get,
+	post,
+	patch,
+	put,
+	delete: deleteReq
+} = require('../helpers/request');
 module.exports = {
 	list: async (guild_id) =>
 		get(`https://discord.com/api/v10/guilds/${guild_id}/emojis`),
@@ -16,5 +22,5 @@ module.exports = {
 	delete: async (guild_id, emoji_id) =>
 		deleteReq(
 			`https://discord.com/api/v10/guilds/${guild_id}/emojis/${emoji_id}`
-		),
+		)
 };

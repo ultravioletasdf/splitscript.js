@@ -1,7 +1,8 @@
 module.exports = {
 	// Authentication
-	listen: require('./listen.js'),
-	login: require('./login.js'),
+	listen: require('./auth/listen.js'),
+	login: require('./auth/login.js'),
+	generateIntents: require('./auth/generateIntents.js'),
 
 	// Functions
 	channels: require('./functions/channels.js'),

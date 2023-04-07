@@ -4,8 +4,8 @@ const path = require('path');
 
 const root = path.dirname(require.main.filename);
 
-const variable = require('splitscript.js/src/variable.js');
-const tokenToId = require('./tokenToId.js');
+const variable = require('../../variable.js');
+const tokenToId = require('../helpers/tokenToId.js');
 
 function connect(token, options) {
 	if (!token) throw new TypeError('discord token not provided');
@@ -25,7 +25,7 @@ function connect(token, options) {
 		d: {
 			token: token,
 			properties: {
-				os: 'windows',
+				os: process.platform,
 				browser: 'splitscript',
 				device: 'splitscript'
 			},

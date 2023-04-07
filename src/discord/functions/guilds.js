@@ -1,4 +1,10 @@
-const { get, post, patch, put, delete: deleteReq } = require('../request');
+const {
+	get,
+	post,
+	patch,
+	put,
+	delete: deleteReq
+} = require('../helpers/request');
 const users = require('./users');
 module.exports = {
 	/** Create a new guild.  */

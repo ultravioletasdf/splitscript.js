@@ -1,4 +1,10 @@
-const { get, post, patch, put, delete: deleteReq } = require('../request');
+const {
+	get,
+	post,
+	patch,
+	put,
+	delete: deleteReq
+} = require('../helpers/request');
 
 module.exports = {
 	/** Returns a guild template object for the given code. */

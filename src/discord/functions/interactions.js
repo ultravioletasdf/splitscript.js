@@ -1,4 +1,10 @@
-const { get, post, patch, put, delete: deleteReq } = require('../request');
+const {
+	get,
+	post,
+	patch,
+	put,
+	delete: deleteReq
+} = require('../helpers/request');
 const variable = require('../../variable.js');
 let APP_ID;
 variable.emitter.on('set', (key, value) => {
@@ -30,7 +36,7 @@ module.exports = {
 				? `https://discord.com/api/v10/applications/${APP_ID}/guilds/${guild_id}/commands`
 				: `https://discord.com/api/v10/applications/${APP_ID}/commands`;
 			return get(URL, {
-				with_localizations: with_localizations,
+				with_localizations: with_localizations
 			});
 		},
 		bulkOverwrite: async (commands, guild_id) => {
@@ -57,8 +63,8 @@ module.exports = {
 					? `https://discord.com/api/v10/applications/${APP_ID}/guilds/${guild_id}/commands/${command_id}/permissions`
 					: `https://discord.com/api/v10/applications/${APP_ID}/commands/${command_id}/permissions`;
 				return put(URL, permissions);
-			},
-		},
+			}
+		}
 	},
 	responses: {
 		create: async (id, token, response) =>
@@ -78,7 +84,7 @@ module.exports = {
 		delete: async (token) =>
 			deleteReq(
 				`https://discord.com/api/v10/webhooks/${APP_ID}/${token}/messages/@original`
-			),
+			)
 	},
 	followups: {
 		create: async (token, message) =>
@@ -98,6 +104,6 @@ module.exports = {
 		delete: async (token, message_id) =>
 			deleteReq(
 				`https://discord.com/api/v10/webhooks/${APP_ID}/${token}/messages/${message_id}`
-			),
-	},
+			)
+	}
 };

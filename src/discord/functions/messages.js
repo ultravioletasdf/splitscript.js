@@ -1,4 +1,10 @@
-const { get, post, patch, put, delete: deleteReq } = require('../request');
+const {
+	get,
+	post,
+	patch,
+	put,
+	delete: deleteReq
+} = require('../helpers/request');
 
 module.exports = {
 	create: async (message, channel_id) =>

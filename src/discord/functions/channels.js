@@ -1,4 +1,10 @@
-const { get, post, patch, put, delete: deleteReq } = require('../request');
+const {
+	get,
+	post,
+	patch,
+	put,
+	delete: deleteReq
+} = require('../helpers/request');
 
 module.exports = {
 	get: async (id) => get(`https://discord.com/api/v10/channels/${id}`),
@@ -20,13 +26,13 @@ module.exports = {
 			post(
 				`https://discord.com/api/v10/channels/${id}/invites`,
 				invite ?? {}
-			),
+			)
 	},
 	positions: {
 		update: async (guild_id, channels) =>
 			patch(
 				`https://discord.com/api/v10/guilds/${guild_id}/channels`,
 				channels
-			),
-	},
+			)
+	}
 };

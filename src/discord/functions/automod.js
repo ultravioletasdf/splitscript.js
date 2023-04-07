@@ -1,4 +1,10 @@
-const { get, post, patch, put, delete: deleteReq } = require('../request');
+const {
+	get,
+	post,
+	patch,
+	put,
+	delete: deleteReq
+} = require('../helpers/request');
 
 module.exports = {
 	/** Get a list of all rules currently configured for the guild. Returns a list of auto moderation rule objects for the given guild. */

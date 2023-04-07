@@ -1,4 +1,10 @@
-const { get, post, patch, put, delete: deleteReq } = require('../request');
+const {
+	get,
+	post,
+	patch,
+	put,
+	delete: deleteReq
+} = require('../helpers/request');
 module.exports = {
 	/** Returns a list of guild scheduled event objects for the given guild. */
 	list: async (guild_id, with_user_count) =>
