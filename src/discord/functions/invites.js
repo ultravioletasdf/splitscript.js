@@ -6,8 +6,6 @@ const {
 	delete: deleteReq
 } = require('../helpers/request');
 module.exports = {
-	get: async (invite_code, params) =>
-		get(`https://discord.com/api/v10/invites/${invite_code}`, params),
-	delete: async (invite_code) =>
-		deleteReq(`https://discord.com/api/v10/invites/${invite_code}`)
+	get: async (invite_code, params) => get(`invites/${invite_code}`, params),
+	delete: async (invite_code) => deleteReq(`invites/${invite_code}`)
 };
