@@ -1,6 +1,6 @@
 {
 	"name": "splitscript.js",
-	"version": "0.22.1",
+	"version": "0.22.2",
 	"main": "index.js",
 	"description": "Simple library with event listeners and APIs for discord",
 	"keywords": [
@@ -11,18 +11,18 @@
 		"wrapper",
 		"server"
 	],
-	"author": "Ultraviolet - Infrared Studio",
+	"author": "Ultraviolet",
 	"license": "ISC",
 	"dependencies": {
-		"splitscript.https": "*",
+		"splitscript.https": "^1.0.7",
 		"ws": "^8.9.0"
 	},
 	"homepage": "https://splitscript.js.org",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/infrared-studio/splitscript.js.git"
+		"url": "git+https://github.com/ultravioletasdf/splitscript.js.git"
 	},
 	"bugs": {
-		"url": "https://github.com/infrared-studio/splitscript.js/issues"
+		"url": "https://github.com/ultravioletasdf/splitscript.js/issues"
 	}
 }
